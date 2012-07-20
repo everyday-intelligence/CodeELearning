@@ -19,6 +19,7 @@ public abstract class Question implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
     
+    protected QuestionFigure questionFigure;
     protected String questionText;
     @OneToMany
     protected List<Choice> choices;
@@ -35,6 +36,15 @@ public abstract class Question implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public QuestionFigure getQuestionFigure() {
+        //TODO if null rendre une image par defaut
+        return questionFigure;
+    }
+
+    public void setQuestionFigure(QuestionFigure questionFigure) {
+        this.questionFigure = questionFigure;
     }
 
     public List<Choice> getChoices() {
