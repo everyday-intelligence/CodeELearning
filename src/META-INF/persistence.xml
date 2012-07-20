@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="CodeELearningPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>codeelearning.domain.Question</class>
+    <class>codeelearning.domain.Choice</class>
+    <class>codeelearning.domain.Theme</class>
+    <class>codeelearning.domain.MultipleChoicesQuestion</class>
+    <class>codeelearning.domain.SingleChoiceQuestion</class>
+    <class>codeelearning.domain.QuestionFigure</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/CodeApp"/>
+      <property name="javax.persistence.jdbc.password" value="azerty"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.user" value="ramzi"/>
+      <property name="eclipselink.ddl-generation" value="create-tables"/>
+    </properties>
+  </persistence-unit>
+</persistence>
