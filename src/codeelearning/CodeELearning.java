@@ -22,7 +22,7 @@ public class CodeELearning extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("StartupView.fxml"));
         
         stage.setScene(new Scene(root));
         stage.show();
