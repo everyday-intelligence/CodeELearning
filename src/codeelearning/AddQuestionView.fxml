@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="328.0" prefWidth="381.0" xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.AddQuestionController">
+  <children>
+    <Pane id="imagePane" layoutX="15.0" layoutY="16.0" prefHeight="181.0" prefWidth="353.0">
+      <children>
+        <ImageView id="QuestionFigure" fx:id="questionFigure" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+          <fitHeight>
+            <Long fx:value="150" />
+          </fitHeight>
+          <fitWidth>
+            <Long fx:value="300" />
+          </fitWidth>
+        </ImageView>
+        <Label id="label" fx:id="labelFile" layoutX="14.0" layoutY="148.0" minHeight="16.0" minWidth="69.0" prefHeight="16.0" prefWidth="69.0" />
+      </children>
+    </Pane>
+    <Button id="button" fx:id="setFigureButton" layoutX="293.0" layoutY="120.0" onAction="#handleButtonAction" text="SetFigure" />
+    <Button id="button" fx:id="saveQuestionButton" layoutX="285.0" layoutY="281.0" onAction="#handleSaveQuestionAction" text="Save Question" />
+  </children>
+</AnchorPane>

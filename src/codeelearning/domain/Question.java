@@ -12,7 +12,7 @@ import javax.persistence.*;
  *
  * @author Ramzi
  */
-@MappedSuperclass
+@Entity
 public abstract class Question implements Serializable {
     protected static final long serialVersionUID = 1L;
     @Id
