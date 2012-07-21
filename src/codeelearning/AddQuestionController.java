@@ -9,16 +9,22 @@ import codeelearning.domain.SingleChoiceQuestion;
 import codeelearning.domainControllers.QuestionFigureJpaController;
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -35,6 +41,9 @@ public class AddQuestionController implements Initializable {
     private ImageView questionFigure = new ImageView();
     @FXML
     private Pane imagePane;
+    @FXML
+    private VBox choicesVBox;
+    private List<HBox> choicesItems = new ArrayList<HBox>();
     File figureFile;
     
     @FXML
@@ -59,7 +68,19 @@ public class AddQuestionController implements Initializable {
         
         
     }
+    @FXML
+    private void handleAddChoiceAction(ActionEvent event) {
+     System.out.println("adding choice");
+     HBox choiceItem = new HBox();
+     
+     TextField choice = new TextField();
+     CheckBox isCorrect = new CheckBox();
 
+     choiceItem.getChildren().add(isCorrect);
+     choiceItem.getChildren().add(choice);
+     choicesItems.add(choiceItem);
+     choicesVBox.getChildren().add(0,choiceItem);
+ }
     @FXML
     private void handleSaveQuestionAction(ActionEvent event) {
         QuestionFigure qf = new QuestionFigure();
