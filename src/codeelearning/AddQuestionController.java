@@ -14,18 +14,18 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -43,7 +43,8 @@ public class AddQuestionController implements Initializable {
     private Pane imagePane;
     @FXML
     private VBox choicesVBox;
-    private List<HBox> choicesItems = new ArrayList<HBox>();
+    @FXML
+    private ListView<ChoiceItemModel> choicesItems;
     File figureFile;
     
     @FXML
@@ -63,23 +64,11 @@ public class AddQuestionController implements Initializable {
         figureFile = fileChooser.showOpenDialog(CodeELearning.getInstance().getCurrentStage());
         labelFile.setText(figureFile.getPath());
         questionFigure.setImage(new Image(figureFile.getAbsolutePath()));
-        //imagePane.getChildren().add(questionFigure);
-        
-        
-        
+        //imagePane.getChildren().add(questionFigure);        
     }
     @FXML
     private void handleAddChoiceAction(ActionEvent event) {
      System.out.println("adding choice");
-     HBox choiceItem = new HBox();
-     
-     TextField choice = new TextField();
-     CheckBox isCorrect = new CheckBox();
-
-     choiceItem.getChildren().add(isCorrect);
-     choiceItem.getChildren().add(choice);
-     choicesItems.add(choiceItem);
-     choicesVBox.getChildren().add(0,choiceItem);
  }
     @FXML
     private void handleSaveQuestionAction(ActionEvent event) {
@@ -96,7 +85,32 @@ public class AddQuestionController implements Initializable {
     
 @Override
         public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>()
+        {
+            public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p)
+            {
+                return new ChoiceCell();
+            }
+        });
+        /*
+        choicesItems.setItems(FXCollections.observableArrayList
+        (
+            new ChoiceItemModel("Tiger", true),
+            new ChoiceItemModel("Shark", false),
+            new ChoiceItemModel("Bear", false),
+            new ChoiceItemModel("Tiger", true),
+            new ChoiceItemModel("Shark", false),
+            new ChoiceItemModel("Bear", false),
+            new ChoiceItemModel("Tiger", true),
+            new ChoiceItemModel("Shark", false),
+            new ChoiceItemModel("Bear", false),
+            new ChoiceItemModel("Tiger", true),
+            new ChoiceItemModel("Shark", false),
+            new ChoiceItemModel("Bear", false),
+            new ChoiceItemModel("Wolf", true)
+        ));
+        * */
+        
     } 
 public static byte[] getArrayByte(InputStream input, int estimatedSize)
 			throws IOException {

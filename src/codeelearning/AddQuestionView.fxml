@@ -18,22 +18,11 @@
     </Pane>
     <Button id="button" fx:id="setFigureButton" layoutX="18.0" layoutY="379.0" onAction="#handleButtonAction" text="SetFigure" />
     <TextField layoutX="18.0" layoutY="196.0" prefWidth="345.0" text="Your question here" />
-    <ScrollPane hbarPolicy="NEVER" layoutX="18.0" layoutY="218.0" prefHeight="135.0" prefWidth="345.0">
-      <content>
-        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0">
-          <children>
-            <VBox fx:id="choicesVBox">
-              <children>
-                <Button fx:id="addChoiceButton" mnemonicParsing="false" onAction="#handleAddChoiceAction" prefWidth="330.0" text="Add choice">
-                  <VBox.margin>
-                    <Insets top="5.0" />
-                  </VBox.margin>
-                </Button>
-              </children>
-            </VBox>
-          </children>
-        </AnchorPane>
-      </content>
-    </ScrollPane>
+    <VBox fx:id="choicesVBox" layoutX="18.0" layoutY="218.0" prefHeight="150.0" prefWidth="345.0">
+      <children>
+        <ListView fx:id="choicesItems" />
+        <Button fx:id="addChoiceButton" mnemonicParsing="false" onAction="#handleAddChoiceAction" prefWidth="345.0" text="Add choice" />
+      </children>
+    </VBox>
   </children>
 </AnchorPane>
