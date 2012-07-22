@@ -25,7 +25,7 @@ public class ChoiceCell extends ListCell<ChoiceItemModel>
 
         if(model != null)
         {
-            URL location = ChoiceItemController.class.getResource("ChoiceItemModel.fxml");
+            URL location = ChoiceItemController.class.getResource("ChoiceItemView.fxml");
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(location);

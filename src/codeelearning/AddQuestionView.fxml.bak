@@ -13,15 +13,24 @@
     <Pane id="imagePane" layoutX="15.0" layoutY="16.0" prefHeight="181.0" prefWidth="353.0">
       <children>
         <ImageView id="QuestionFigure" fx:id="questionFigure" fitHeight="165.0" fitWidth="330.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-        <Label id="label" fx:id="labelFile" layoutX="14.0" layoutY="148.0" minHeight="16.0" minWidth="69.0" prefHeight="16.0" prefWidth="69.0" />
+        <Label id="label" fx:id="labelFile" layoutX="14.0" layoutY="148.0" minHeight="16.0" minWidth="69.0" prefHeight="16.0" prefWidth="330.0" />
       </children>
     </Pane>
     <Button id="button" fx:id="setFigureButton" layoutX="18.0" layoutY="379.0" onAction="#handleButtonAction" text="SetFigure" />
     <TextField layoutX="18.0" layoutY="196.0" prefWidth="345.0" text="Your question here" />
     <VBox fx:id="choicesVBox" layoutX="18.0" layoutY="218.0" prefHeight="150.0" prefWidth="345.0">
       <children>
-        <ListView fx:id="choicesItems" />
-        <Button fx:id="addChoiceButton" mnemonicParsing="false" onAction="#handleAddChoiceAction" prefWidth="345.0" text="Add choice" />
+        <ListView fx:id="choicesItems" onMouseClicked="#handleSelectAction" />
+        <HBox prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Button fx:id="addChoiceButton" mnemonicParsing="false" onAction="#handleAddChoiceAction" text="Add choice">
+              <prefWidth>
+                <Long fx:value="-1" />
+              </prefWidth>
+            </Button>
+            <Button id="removeChoiceButton" fx:id="removeChoiceItemButton" mnemonicParsing="false" onAction="#handleRemoveChoiceAction" text="Remove choice" />
+          </children>
+        </HBox>
       </children>
     </VBox>
   </children>

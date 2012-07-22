@@ -9,6 +9,8 @@
   <children>
     <CheckBox fx:id="isSelectedView" prefHeight="21.0" prefWidth="22.000099999997474" />
     <TextField fx:id="choiceText" />
+    <Button fx:id="choiceItemEditButton" mnemonicParsing="false" text="Edit" />
+    <Button fx:id="choiceItemDeleteButton" mnemonicParsing="false" onAction="#handleDeleteChoiceItemAction" text="Delete" />
   </children>
   <prefWidth>
     <Long fx:value="-1" />
