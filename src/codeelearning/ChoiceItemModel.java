@@ -41,4 +41,10 @@ public class ChoiceItemModel
     public boolean isSelected(){ return isSelected.get(); }
     public void setSelected(boolean isSelected){ this.isSelected.set(isSelected); }
     public BooleanProperty isSelectedProperty(){ return isSelected; }
+
+    @Override
+    public String toString() {
+        return choiceText.getValue() + " = " + isSelected.getValue();
+    }
+    
 }

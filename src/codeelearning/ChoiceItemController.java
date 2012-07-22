@@ -91,4 +91,8 @@ public class ChoiceItemController{
     {
         isSelectedView.setSelected(newValue);
     }
+    @FXML
+    private void handleDeleteChoiceItemAction(ActionEvent e){
+        this.model = null;
+    }
 }

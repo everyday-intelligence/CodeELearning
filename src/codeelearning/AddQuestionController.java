@@ -16,11 +16,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -69,7 +71,11 @@ public class AddQuestionController implements Initializable {
     @FXML
     private void handleAddChoiceAction(ActionEvent event) {
      System.out.println("adding choice");
-     choicesItems.getItems().add(new ChoiceItemModel("ramzi",true));
+     choicesItems.getItems().add(new ChoiceItemModel());
+ }
+ private void handleremoveChoiceAction(ActionEvent event) {
+     System.out.println("adding choice");
+     choicesItems.getItems().remove(event.getSource());
  }
     @FXML
     private void handleSaveQuestionAction(ActionEvent event) {
@@ -95,7 +101,15 @@ public class AddQuestionController implements Initializable {
         });
         
         choicesItems.setItems(FXCollections.observableArrayList(new ArrayList<ChoiceItemModel>()));
-        
+        choicesItems.setOnMouseClicked(new EventHandler<MouseEvent>(){
+          @Override
+          public void handle(MouseEvent arg0) {
+             
+              labelFile.setText("Selected: " +
+                  choicesItems.getSelectionModel().getSelectedItems());
+          }
+ 
+      });
         
     } 
 public static byte[] getArrayByte(InputStream input, int estimatedSize)

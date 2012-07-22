@@ -5,13 +5,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox
-    xmlns:fx="http://javafx.com/fxml"
-
-    fx:controller="codeelearning.ChoiceItemController"
->
-    <children>
-        <CheckBox fx:id="isSelectedView" />
-        <TextField fx:id="choiceText" />
-    </children>
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.ChoiceItemController">
+  <children>
+    <CheckBox fx:id="isSelectedView" prefHeight="21.0" prefWidth="22.000099999997474" />
+    <TextField fx:id="choiceText" />
+    <Button fx:id="choiceItemEditButton" mnemonicParsing="false" onAction="#handleEditChoiceItemAction" text="Edit" />
+    <Button fx:id="choiceItemDeleteButton" mnemonicParsing="false" onAction="#handleDeleteChoiceItemAction" text="Delete" />
+  </children>
+  <prefWidth>
+    <Long fx:value="-1" />
+  </prefWidth>
 </HBox>
