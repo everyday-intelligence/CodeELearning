@@ -15,8 +15,8 @@ import javafx.beans.property.StringProperty;
 
 public class ChoiceItemModel
 {
-    private final StringProperty choiceText;
-    private final BooleanProperty isSelected;
+    private StringProperty choiceText;
+    private BooleanProperty isSelected;
 
     public ChoiceItemModel()
     {
@@ -34,9 +34,9 @@ public class ChoiceItemModel
         this.isSelected = new SimpleBooleanProperty(isSelected);
     }
 
-    public String getChoiceTextl(){ return choiceText.get(); }
-    public void setChoiceTextl(String choiceTextl){ this.choiceText.set(choiceTextl); }
-    public StringProperty labelProperty(){ return choiceText; }
+    public String getChoiceText(){ return choiceText.get(); }
+    public void setChoiceText(String choiceText){ this.choiceText.set(choiceText); }
+    public StringProperty choiceTextProperty(){ return choiceText; }
 
     public boolean isSelected(){ return isSelected.get(); }
     public void setSelected(boolean isSelected){ this.isSelected.set(isSelected); }

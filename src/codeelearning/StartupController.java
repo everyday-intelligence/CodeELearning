@@ -26,7 +26,7 @@ public class StartupController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         System.out.println("go to figure");
         try {
-            CodeELearning.getInstance().replaceSceneContent("AddQuestionView1.fxml");
+            CodeELearning.getInstance().replaceSceneContent("AddQuestionView.fxml");
         } catch (Exception ex) {
             Logger.getLogger(StartupController.class.getName()).log(Level.SEVERE, null, ex);
         }

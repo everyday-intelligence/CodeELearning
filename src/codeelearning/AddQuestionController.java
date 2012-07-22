@@ -44,7 +44,7 @@ public class AddQuestionController implements Initializable {
     @FXML
     private VBox choicesVBox;
     @FXML
-    private ListView<ChoiceItemModel> choicesItems;
+    private ListView<ChoiceItemModel> choicesItems;;
     File figureFile;
     
     @FXML
@@ -69,6 +69,7 @@ public class AddQuestionController implements Initializable {
     @FXML
     private void handleAddChoiceAction(ActionEvent event) {
      System.out.println("adding choice");
+     choicesItems.getItems().add(new ChoiceItemModel("ramzi",true));
  }
     @FXML
     private void handleSaveQuestionAction(ActionEvent event) {
@@ -92,24 +93,9 @@ public class AddQuestionController implements Initializable {
                 return new ChoiceCell();
             }
         });
-        /*
-        choicesItems.setItems(FXCollections.observableArrayList
-        (
-            new ChoiceItemModel("Tiger", true),
-            new ChoiceItemModel("Shark", false),
-            new ChoiceItemModel("Bear", false),
-            new ChoiceItemModel("Tiger", true),
-            new ChoiceItemModel("Shark", false),
-            new ChoiceItemModel("Bear", false),
-            new ChoiceItemModel("Tiger", true),
-            new ChoiceItemModel("Shark", false),
-            new ChoiceItemModel("Bear", false),
-            new ChoiceItemModel("Tiger", true),
-            new ChoiceItemModel("Shark", false),
-            new ChoiceItemModel("Bear", false),
-            new ChoiceItemModel("Wolf", true)
-        ));
-        * */
+        
+        choicesItems.setItems(FXCollections.observableArrayList(new ArrayList<ChoiceItemModel>()));
+        
         
     } 
 public static byte[] getArrayByte(InputStream input, int estimatedSize)

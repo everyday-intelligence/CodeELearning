@@ -21,11 +21,11 @@ import javafx.scene.control.TextField;
  */
    
 public class ChoiceItemController{
-    private final ChangeListener<String> LABEL_CHANGE_LISTENER = new ChangeListener<String>()
+    private final ChangeListener<String> CHOICETEXT_CHANGE_LISTENER = new ChangeListener<String>()
     {
         public void changed(ObservableValue<? extends String> property, String oldValue, String newValue)
         {
-            updateChoiceTextlView(newValue);
+            updateChoiceTextView(newValue);
         }
     };
 
@@ -60,26 +60,28 @@ public class ChoiceItemController{
 
     private void removeModelListeners()
     {
-        model.labelProperty().removeListener(LABEL_CHANGE_LISTENER);
+        model.choiceTextProperty().removeListener(CHOICETEXT_CHANGE_LISTENER);
         model.isSelectedProperty().removeListener(IS_SELECTED_CHANGE_LISTENER);
         isSelectedView.selectedProperty().unbindBidirectional(model.isSelectedProperty());
+        //choiceText.textProperty().unbindBidirectional(model.choiceTextProperty());
     }
 
     private void setupModelListeners()
     {
-        model.labelProperty().addListener(LABEL_CHANGE_LISTENER);
+        model.choiceTextProperty().addListener(CHOICETEXT_CHANGE_LISTENER);
         model.isSelectedProperty().addListener(IS_SELECTED_CHANGE_LISTENER);
         isSelectedView.selectedProperty().bindBidirectional(model.isSelectedProperty());
+        choiceText.textProperty().bindBidirectional(model.choiceTextProperty());
     }
 
     private void updateView()
     {
-        updateChoiceTextlView();
+        updateChoiceTextView();
         updateIsSelectedView();
     }
 
-    private void updateChoiceTextlView(){ updateChoiceTextlView(model.getChoiceTextl()); }
-    private void updateChoiceTextlView(String newValue)
+    private void updateChoiceTextView(){ updateChoiceTextView(model.getChoiceText()); }
+    private void updateChoiceTextView(String newValue)
     {
         choiceText.setText(newValue);
     }
