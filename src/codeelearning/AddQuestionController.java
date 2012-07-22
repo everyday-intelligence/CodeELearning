@@ -4,9 +4,11 @@
  */
 package codeelearning;
 
-import codeelearning.domain.QuestionFigure;
-import codeelearning.domain.SingleChoiceQuestion;
+import codeelearning.models.AddChoiceItemCell;
+import codeelearning.models.AddChoiceItemModel;
+import codeelearning.domain.*;
 import codeelearning.domainControllers.QuestionFigureJpaController;
+import codeelearning.domainControllers.QuestionJpaController;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -48,8 +50,10 @@ public class AddQuestionController implements Initializable {
     @FXML
     private VBox choicesVBox;
     @FXML
-    private ListView<ChoiceItemModel> choicesItems;
-    ;
+    private ListView<AddChoiceItemModel> choicesItems;
+     @FXML
+    private TextField questionText;
+    
     File figureFile;
 
     @FXML
@@ -75,7 +79,7 @@ public class AddQuestionController implements Initializable {
     @FXML
     private void handleAddChoiceAction(ActionEvent event) {
         System.out.println("adding choice");
-        choicesItems.getItems().add(new ChoiceItemModel());
+        choicesItems.getItems().add(new AddChoiceItemModel());
     }
 
    
@@ -88,20 +92,48 @@ public class AddQuestionController implements Initializable {
             Logger.getLogger(AddQuestionController.class.getName()).log(Level.SEVERE, null, ex);
         }
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CodeELearningPU");
-        QuestionFigureJpaController qfc = new QuestionFigureJpaController(entityManagerFactory);
-        qfc.create(qf);
+        //QuestionFigureJpaController qfc = new QuestionFigureJpaController(entityManagerFactory);
+        //qfc.create(qf);
+        //TODO voir si MC ou SC question
+        Question q = null;
+        int nbCorrects = 0;
+        List<Choice> choices = new ArrayList<Choice>();
+        for(AddChoiceItemModel ci : choicesItems.getItems()){
+            Choice c = new Choice();
+            c.setChoiceAnswer(ci.getChoiceText());
+            c.setCorrect(ci.isSelected());
+            if (c.isCorrect()) {
+                nbCorrects += 1;
+            }
+            choices.add(c);
+        }
+        if(nbCorrects==1){
+            q = new SingleChoiceQuestion();
+        }else if(nbCorrects>1){
+            q = new MultipleChoicesQuestion();
+        }else{
+            //TODO pas de réponses exactes signaler
+            return;
+        }
+        q.addAllChoices(choices);
+        q.setQuestionFigure(qf);
+        q.setQuestionText(questionText.getText());
+        //TODO perrsist
+        QuestionJpaController qc = new QuestionJpaController(entityManagerFactory);
+        qc.create(q);
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>() {
+        choicesItems.setCellFactory(new Callback<ListView<AddChoiceItemModel>, ListCell<AddChoiceItemModel>>() {
 
-            public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p) {
-                return new ChoiceCell();
+            public ListCell<AddChoiceItemModel> call(ListView<AddChoiceItemModel> p) {
+                return new AddChoiceItemCell();
             }
         });
 
-        choicesItems.setItems(FXCollections.observableArrayList(new ArrayList<ChoiceItemModel>()));
+        choicesItems.setItems(FXCollections.observableArrayList(new ArrayList<AddChoiceItemModel>()));
 
 
     }

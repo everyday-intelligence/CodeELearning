@@ -17,7 +17,7 @@
       </children>
     </Pane>
     <Button id="button" fx:id="setFigureButton" layoutX="18.0" layoutY="379.0" onAction="#handleButtonAction" text="SetFigure" />
-    <TextField layoutX="18.0" layoutY="196.0" prefWidth="345.0" text="Your question here" />
+    <TextField fx:id="questionText" layoutX="18.0" layoutY="195.0" prefWidth="345.0" text="Your question here" />
     <VBox fx:id="choicesVBox" layoutX="18.0" layoutY="218.0" prefHeight="150.0" prefWidth="345.0">
       <children>
         <ListView fx:id="choicesItems" onMouseClicked="#handleSelectAction" />
@@ -28,7 +28,7 @@
                 <Long fx:value="-1" />
               </prefWidth>
             </Button>
-            <Button id="removeChoiceButton" fx:id="removeChoiceItemButton" mnemonicParsing="false" onAction="#handleRemoveChoiceAction" text="Remove choice" />
+            <Button id="removeChoiceButton" fx:id="removeChoiceItemButton" disable="true" mnemonicParsing="false" onAction="#handleRemoveChoiceAction" text="Remove choice" />
           </children>
         </HBox>
       </children>

@@ -4,6 +4,7 @@
  */
 package codeelearning;
 
+import codeelearning.models.AddChoiceItemModel;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -42,14 +43,14 @@ public class ChoiceItemController{
     @FXML
     private CheckBox isSelectedView;
     
-    private ChoiceItemModel model;
+    private AddChoiceItemModel model;
 
-    public ChoiceItemModel getModel()
+    public AddChoiceItemModel getModel()
     {
         return model;
     }
 
-    public void setModel(ChoiceItemModel model)
+    public void setModel(AddChoiceItemModel model)
     {
         if(this.model != null)
             removeModelListeners();

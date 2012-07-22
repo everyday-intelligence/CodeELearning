@@ -19,6 +19,8 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class MultipleChoicesQuestion extends Question {
 
+       
+    
     @Override
     public Boolean isValid() {
         int nbCorrects = 0;

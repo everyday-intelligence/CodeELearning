@@ -2,13 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package codeelearning;
+package codeelearning.models;
 
 /**
  *
  * @author Ramzi
  */
 
+import codeelearning.ChoiceItemController;
 import java.io.IOException;
 import java.net.URL;
 import javafx.fxml.FXMLLoader;
@@ -16,16 +17,16 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 
-public class ChoiceCell extends ListCell<ChoiceItemModel>
+public class AddChoiceItemCell extends ListCell<AddChoiceItemModel>
 {
     @Override
-    protected void updateItem(ChoiceItemModel model, boolean bln)
+    protected void updateItem(AddChoiceItemModel model, boolean bln)
     {
         super.updateItem(model, bln);
 
         if(model != null)
         {
-            URL location = ChoiceItemController.class.getResource("ChoiceItemView.fxml");
+            URL location = ChoiceItemController.class.getResource("views/AddChoiceItemView.fxml");
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(location);

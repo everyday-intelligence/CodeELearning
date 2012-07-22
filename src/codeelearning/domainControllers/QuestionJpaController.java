@@ -4,7 +4,7 @@
  */
 package codeelearning.domainControllers;
 
-import codeelearning.domain.SingleChoiceQuestion;
+import codeelearning.domain.Question;
 import codeelearning.domainControllers.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
@@ -19,9 +19,9 @@ import javax.persistence.criteria.Root;
  *
  * @author Ramzi
  */
-public class SingleChoiceQuestionJpaController implements Serializable {
+public class QuestionJpaController implements Serializable {
 
-    public SingleChoiceQuestionJpaController(EntityManagerFactory emf) {
+    public QuestionJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -30,12 +30,12 @@ public class SingleChoiceQuestionJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(SingleChoiceQuestion singleChoiceQuestion) {
+    public void create(Question question) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(singleChoiceQuestion);
+            em.persist(question);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -44,19 +44,19 @@ public class SingleChoiceQuestionJpaController implements Serializable {
         }
     }
 
-    public void edit(SingleChoiceQuestion singleChoiceQuestion) throws NonexistentEntityException, Exception {
+    public void edit(Question question) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            singleChoiceQuestion = em.merge(singleChoiceQuestion);
+            question = em.merge(question);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = singleChoiceQuestion.getId();
-                if (findSingleChoiceQuestion(id) == null) {
-                    throw new NonexistentEntityException("The singleChoiceQuestion with id " + id + " no longer exists.");
+                Long id = question.getId();
+                if (findQuestion(id) == null) {
+                    throw new NonexistentEntityException("The question with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -72,14 +72,14 @@ public class SingleChoiceQuestionJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            SingleChoiceQuestion singleChoiceQuestion;
+            Question question;
             try {
-                singleChoiceQuestion = em.getReference(SingleChoiceQuestion.class, id);
-                singleChoiceQuestion.getId();
+                question = em.getReference(Question.class, id);
+                question.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The singleChoiceQuestion with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The question with id " + id + " no longer exists.", enfe);
             }
-            em.remove(singleChoiceQuestion);
+            em.remove(question);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -88,19 +88,19 @@ public class SingleChoiceQuestionJpaController implements Serializable {
         }
     }
 
-    public List<SingleChoiceQuestion> findSingleChoiceQuestionEntities() {
-        return findSingleChoiceQuestionEntities(true, -1, -1);
+    public List<Question> findQuestionEntities() {
+        return findQuestionEntities(true, -1, -1);
     }
 
-    public List<SingleChoiceQuestion> findSingleChoiceQuestionEntities(int maxResults, int firstResult) {
-        return findSingleChoiceQuestionEntities(false, maxResults, firstResult);
+    public List<Question> findQuestionEntities(int maxResults, int firstResult) {
+        return findQuestionEntities(false, maxResults, firstResult);
     }
 
-    private List<SingleChoiceQuestion> findSingleChoiceQuestionEntities(boolean all, int maxResults, int firstResult) {
+    private List<Question> findQuestionEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(SingleChoiceQuestion.class));
+            cq.select(cq.from(Question.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -112,20 +112,20 @@ public class SingleChoiceQuestionJpaController implements Serializable {
         }
     }
 
-    public SingleChoiceQuestion findSingleChoiceQuestion(Long id) {
+    public Question findQuestion(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(SingleChoiceQuestion.class, id);
+            return em.find(Question.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getSingleChoiceQuestionCount() {
+    public int getQuestionCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<SingleChoiceQuestion> rt = cq.from(SingleChoiceQuestion.class);
+            Root<Question> rt = cq.from(Question.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

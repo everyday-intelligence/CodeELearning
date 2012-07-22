@@ -33,7 +33,7 @@ public class CodeELearning extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("StartupView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/StartupView.fxml"));
         currentStage = stage;
 
         stage.setScene(new Scene(root));

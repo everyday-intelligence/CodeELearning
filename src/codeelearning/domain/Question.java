@@ -5,6 +5,7 @@
 package codeelearning.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -19,11 +20,12 @@ public abstract class Question implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
     
+    @OneToOne(cascade= CascadeType.PERSIST)
     protected QuestionFigure questionFigure;
     protected String questionText;
-    @OneToMany
-    protected List<Choice> choices;
-    @ManyToMany
+    @OneToMany(cascade= CascadeType.ALL)
+    protected List<Choice> choices = new ArrayList<Choice>();
+    @ManyToMany(cascade= CascadeType.MERGE)
     protected List<Theme> themes;
     protected int importance;
     protected int complexity;
@@ -79,6 +81,10 @@ public abstract class Question implements Serializable {
     public void addChoice(Choice choice) {
         //TODO vérif existance
         this.choices.add(choice);
+    }
+    public void addAllChoices(List<Choice> choices) {
+        //TODO vérif existance
+        this.choices.addAll(choices);
     }
     public void removeTheme(Theme theme) {
         this.themes.remove(theme);

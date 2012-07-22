@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package codeelearning;
+package codeelearning.models;
 
 /**
  *
@@ -13,22 +13,22 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class ChoiceItemModel
+public class AddChoiceItemModel
 {
     private StringProperty choiceText;
     private BooleanProperty isSelected;
 
-    public ChoiceItemModel()
+    public AddChoiceItemModel()
     {
         this(null, false);
     }
 
-    public ChoiceItemModel(String label)
+    public AddChoiceItemModel(String label)
     {
         this(label, false);
     }
 
-    public ChoiceItemModel(String label, boolean isSelected)
+    public AddChoiceItemModel(String label, boolean isSelected)
     {
         this.choiceText = new SimpleStringProperty(label);
         this.isSelected = new SimpleBooleanProperty(isSelected);
