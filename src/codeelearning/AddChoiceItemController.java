@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
  * @author Ramzi
  */
    
-public class ChoiceItemController{
+public class AddChoiceItemController{
     private final ChangeListener<String> CHOICETEXT_CHANGE_LISTENER = new ChangeListener<String>()
     {
         public void changed(ObservableValue<? extends String> property, String oldValue, String newValue)

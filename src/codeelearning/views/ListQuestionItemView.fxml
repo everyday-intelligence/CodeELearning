@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.ListQuestionItemController">
+  <children>
+    <Label fx:id="themes"/>
+    <Label fx:id="questionText" />
+  </children>
+</HBox>

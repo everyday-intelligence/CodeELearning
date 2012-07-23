@@ -23,7 +23,7 @@ public class StartupController implements Initializable {
     private Label label;
 
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleGoToAddQuestionAction(ActionEvent event) {
         System.out.println("go to figure");
         try {
             CodeELearning.getInstance().replaceSceneContent("views/AddQuestionView.fxml");
@@ -31,7 +31,15 @@ public class StartupController implements Initializable {
             Logger.getLogger(StartupController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+@FXML
+    private void handleGoToListQuestionsAction(ActionEvent event) {
+        System.out.println("go to figure");
+        try {
+            CodeELearning.getInstance().replaceSceneContent("views/ListQuestionsView.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(StartupController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

@@ -7,7 +7,10 @@
 
 <AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.StartupController">
     <children>
-        <Button id="button" layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
+        <HBox>
+        <Button id="button" layoutX="126" layoutY="90" text="add question" onAction="#handleGoToAddQuestionAction" fx:id="gotoAddQuestion" />
+        <Button id="button" layoutX="126" layoutY="90" text="list questions" onAction="#handleGoToListQuestionsAction" fx:id="gotoListQuestions" />
         <Label id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" prefHeight="16" prefWidth="69" fx:id="label" />
+        </HBox>
     </children>
 </AnchorPane>

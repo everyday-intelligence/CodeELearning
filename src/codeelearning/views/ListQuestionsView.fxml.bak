@@ -7,6 +7,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.ListQuestionsController">
   <children>
-    <ListView id="choicesItems" fx:id="questionsItems" layoutY="100.0" onMouseClicked="#handleSelectAction" prefHeight="100.0" prefWidth="320.0" />
+    <ListView fx:id="choicesItems" layoutY="100.0" onMouseClicked="#handleSelectAction" prefHeight="100.0" prefWidth="320.0" />
   </children>
 </AnchorPane>
