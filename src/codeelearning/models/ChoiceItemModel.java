@@ -13,22 +13,22 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class AddChoiceItemModel
+public class ChoiceItemModel
 {
     private StringProperty choiceText;
     private BooleanProperty isSelected;
 
-    public AddChoiceItemModel()
+    public ChoiceItemModel()
     {
         this(null, false);
     }
 
-    public AddChoiceItemModel(String label)
+    public ChoiceItemModel(String label)
     {
         this(label, false);
     }
 
-    public AddChoiceItemModel(String label, boolean isSelected)
+    public ChoiceItemModel(String label, boolean isSelected)
     {
         this.choiceText = new SimpleStringProperty(label);
         this.isSelected = new SimpleBooleanProperty(isSelected);

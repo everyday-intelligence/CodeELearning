@@ -4,8 +4,15 @@
  */
 package codeelearning.domain;
 
-import java.awt.Image;
+import codeelearning.utils.SwingUtils;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 import javax.persistence.*;
 
 /**
@@ -59,6 +66,17 @@ public class QuestionFigure implements Serializable {
         return true;
     }
 
+    public Image convertToFXImage() {
+        try {
+            BufferedImage im = ImageIO.read(new ByteArrayInputStream(figure));
+            Image fximg = SwingUtils.convertToFxImage(im);
+            return fximg;
+        } catch (IOException ex) {
+            Logger.getLogger(QuestionFigure.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     @Override
     public String toString() {
         return "codeelearning.domain.QuestionFigure[ id=" + id + " ]";

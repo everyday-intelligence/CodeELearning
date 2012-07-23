@@ -4,7 +4,7 @@
  */
 package codeelearning;
 
-import codeelearning.models.AddChoiceItemModel;
+import codeelearning.models.ChoiceItemModel;
 import codeelearning.models.ListQuestionItemModel;
 import java.net.URL;
 import java.util.ResourceBundle;

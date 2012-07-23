@@ -5,7 +5,7 @@
 package codeelearning;
 
 import codeelearning.models.AddChoiceItemCell;
-import codeelearning.models.AddChoiceItemModel;
+import codeelearning.models.ChoiceItemModel;
 import codeelearning.domain.*;
 import codeelearning.domainControllers.QuestionFigureJpaController;
 import codeelearning.domainControllers.QuestionJpaController;
@@ -50,7 +50,7 @@ public class AddQuestionController implements Initializable {
     @FXML
     private VBox choicesVBox;
     @FXML
-    private ListView<AddChoiceItemModel> choicesItems;
+    private ListView<ChoiceItemModel> choicesItems;
      @FXML
     private TextField questionText;
     
@@ -79,7 +79,7 @@ public class AddQuestionController implements Initializable {
     @FXML
     private void handleAddChoiceAction(ActionEvent event) {
         System.out.println("adding choice");
-        choicesItems.getItems().add(new AddChoiceItemModel());
+        choicesItems.getItems().add(new ChoiceItemModel());
     }
 
    
@@ -98,7 +98,7 @@ public class AddQuestionController implements Initializable {
         Question q = null;
         int nbCorrects = 0;
         List<Choice> choices = new ArrayList<Choice>();
-        for(AddChoiceItemModel ci : choicesItems.getItems()){
+        for(ChoiceItemModel ci : choicesItems.getItems()){
             Choice c = new Choice();
             c.setChoiceAnswer(ci.getChoiceText());
             c.setCorrect(ci.isSelected());
@@ -126,14 +126,14 @@ public class AddQuestionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        choicesItems.setCellFactory(new Callback<ListView<AddChoiceItemModel>, ListCell<AddChoiceItemModel>>() {
+        choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>() {
 
-            public ListCell<AddChoiceItemModel> call(ListView<AddChoiceItemModel> p) {
+            public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p) {
                 return new AddChoiceItemCell();
             }
         });
 
-        choicesItems.setItems(FXCollections.observableArrayList(new ArrayList<AddChoiceItemModel>()));
+        choicesItems.setItems(FXCollections.observableArrayList(new ArrayList<ChoiceItemModel>()));
 
 
     }

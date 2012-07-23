@@ -10,6 +10,7 @@ package codeelearning.models;
  */
 
 import codeelearning.AddChoiceItemController;
+import codeelearning.ListChoiceItemController;
 import java.io.IOException;
 import java.net.URL;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,7 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 
-public class AddChoiceItemCell extends ListCell<ChoiceItemModel>
+public class ListChoiceItemCell extends ListCell<ChoiceItemModel>
 {
     @Override
     protected void updateItem(ChoiceItemModel model, boolean bln)
@@ -26,7 +27,7 @@ public class AddChoiceItemCell extends ListCell<ChoiceItemModel>
 
         if(model != null)
         {
-            URL location = AddChoiceItemController.class.getResource("views/AddChoiceItemView.fxml");
+            URL location = ListChoiceItemController.class.getResource("views/ListChoiceItemView.fxml");
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(location);
@@ -35,7 +36,7 @@ public class AddChoiceItemCell extends ListCell<ChoiceItemModel>
             try
             {
                 Node root = (Node)fxmlLoader.load(location.openStream());
-                AddChoiceItemController controller = (AddChoiceItemController)fxmlLoader.getController();
+                ListChoiceItemController controller = (ListChoiceItemController)fxmlLoader.getController();
                 controller.setModel(model);
                 setGraphic(root);
             }

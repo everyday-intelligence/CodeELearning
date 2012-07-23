@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.ListQuestionsController">
+<AnchorPane id="AnchorPane" prefHeight="409.0" prefWidth="537.0" xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.ListQuestionsController">
   <children>
-    <ListView fx:id="choicesItems" layoutY="100.0" onMouseClicked="#handleSelectAction" prefHeight="100.0" prefWidth="320.0" />
+    <ListView id="choicesItems" fx:id="questionsItems" onMouseClicked="#handleSelectAction" prefHeight="158.0" prefWidth="537.0" AnchorPane.bottomAnchor="0.0" />
+    <ImageView fx:id="questionFigure" fitHeight="158.0" fitWidth="210.66666666666666" layoutX="14.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+    <VBox id="questionsArea" fx:id="questionArea" layoutX="225.0" layoutY="14.0" prefHeight="204.0" prefWidth="312.0">
+      <children>
+        <Label id="question" fx:id="questionText" prefWidth="223.0" text="Question" />
+        <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+            <ListView id="choicesList" fx:id="choicesItems" prefHeight="200.0" prefWidth="200.0" />
+          </children>
+          <spacing>
+            <Long fx:value="10" />
+          </spacing>
+        </VBox>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Button mnemonicParsing="false" onAction="#ShowCorrectAnswerAction" text="Show correct answer" />
+            <Button mnemonicParsing="false" onAction="#VerifyAnswerAction" text="Verify my answer" />
+          </children>
+          <spacing>
+            <Long fx:value="10" />
+          </spacing>
+        </HBox>
+      </children>
+      <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </padding>
+      <spacing>
+        <Long fx:value="10" />
+      </spacing>
+    </VBox>
   </children>
 </AnchorPane>

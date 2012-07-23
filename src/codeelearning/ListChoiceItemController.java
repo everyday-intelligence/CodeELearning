@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
  * @author Ramzi
  */
    
-public class AddChoiceItemController{
+public class ListChoiceItemController{
     private final ChangeListener<String> CHOICETEXT_CHANGE_LISTENER = new ChangeListener<String>()
     {
         public void changed(ObservableValue<? extends String> property, String oldValue, String newValue)
@@ -39,7 +39,7 @@ public class AddChoiceItemController{
     };
 
     @FXML
-    private TextField choiceText;
+    private Label choiceText;
     @FXML
     private CheckBox isSelectedView;
     
