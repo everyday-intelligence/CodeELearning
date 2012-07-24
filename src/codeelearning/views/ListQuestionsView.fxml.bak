@@ -24,8 +24,8 @@
         </VBox>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
           <children>
-            <Button mnemonicParsing="false" onAction="#ShowCorrectAnswerAction" text="Show correct answer" />
-            <Button mnemonicParsing="false" onAction="#VerifyAnswerAction" text="Verify my answer" />
+            <Button mnemonicParsing="false" onAction="#showCorrectAnswerAction" text="Show correct answer" />
+            <Button mnemonicParsing="false" onAction="#verifyAnswerAction" text="Verify my answer" />
           </children>
           <spacing>
             <Long fx:value="10" />
