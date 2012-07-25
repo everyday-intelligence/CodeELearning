@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.MenuController">
+  <children>
+    <MenuBar HBox.hgrow="ALWAYS">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <Menu mnemonicParsing="false" text="New">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Custom test" />
+                <MenuItem mnemonicParsing="false" text="Question" />
+              </items>
+            </Menu>
+            <MenuItem mnemonicParsing="false" text="Close" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Tests">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New Test" />
+            <MenuItem mnemonicParsing="false" text="List tests" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Questions">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New question" />
+            <MenuItem mnemonicParsing="false" text="List questions" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Users">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New user" />
+            <MenuItem mnemonicParsing="false" text="List users" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Documentation" />
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+      </menus>
+      <prefWidth>
+        <Long fx:value="-1" />
+      </prefWidth>
+      <HBox.margin>
+        <Insets />
+      </HBox.margin>
+    </MenuBar>
+    <MenuBar>
+      <menus>
+        <Menu mnemonicParsing="false" text="loggedUser" fx:id="loggedUserMenu">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+            <MenuItem mnemonicParsing="false" text="Logout" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Login" fx:id="loginButton" />
+      </menus>
+      <HBox.margin>
+        <Insets />
+      </HBox.margin>
+    </MenuBar>
+  </children>
+  <prefHeight>
+    <Long fx:value="-1" />
+  </prefHeight>
+  <prefWidth>
+    <Long fx:value="-1" />
+  </prefWidth>
+</HBox>
