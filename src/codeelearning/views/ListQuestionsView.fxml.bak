@@ -43,7 +43,7 @@
                         <Long fx:value="-1" />
                       </maxWidth>
                       <minHeight>
-                        <Long fx:value="200" />
+                        <Long fx:value="-1" />
                       </minHeight>
                       <prefHeight>
                         <Long fx:value="-1" />
