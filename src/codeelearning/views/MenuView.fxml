@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.MenuController">
+<HBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.MenuController">
   <children>
     <MenuBar HBox.hgrow="ALWAYS">
       <menus>
@@ -16,10 +16,10 @@
             <Menu mnemonicParsing="false" text="New">
               <items>
                 <MenuItem mnemonicParsing="false" text="Custom test" />
-                <MenuItem mnemonicParsing="false" text="Question" />
+                <MenuItem mnemonicParsing="false" onAction="#handleAddQuestionAction" text="Question" />
               </items>
             </Menu>
-            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" onAction="#handleCloseAction" text="Close" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Tests">
@@ -30,8 +30,8 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Questions">
           <items>
-            <MenuItem mnemonicParsing="false" text="New question" />
-            <MenuItem mnemonicParsing="false" text="List questions" />
+            <MenuItem mnemonicParsing="false" onAction="#handleAddQuestionAction" text="New question" />
+            <MenuItem mnemonicParsing="false" onAction="#handleListQuestionsAction" text="List questions" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Users">
@@ -54,20 +54,13 @@
         <Insets />
       </HBox.margin>
     </MenuBar>
-    <MenuBar>
-      <menus>
-        <Menu mnemonicParsing="false" text="loggedUser" fx:id="loggedUserMenu">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About" />
-            <MenuItem mnemonicParsing="false" text="Logout" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Login" fx:id="loginButton" />
-      </menus>
-      <HBox.margin>
-        <Insets />
-      </HBox.margin>
-    </MenuBar>
+    <Button contentDisplay="CENTER" mnemonicParsing="false" text="Button" textOverrun="CLIP" />
+    <MenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" text="Logged User">
+      <items>
+        <MenuItem mnemonicParsing="false" text="About" />
+        <MenuItem mnemonicParsing="false" text="Logout" />
+      </items>
+    </MenuButton>
   </children>
   <prefHeight>
     <Long fx:value="-1" />
