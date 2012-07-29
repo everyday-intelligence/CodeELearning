@@ -7,36 +7,22 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="414.0" prefWidth="381.0" xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.AddQuestionController">
+<AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml" fx:controller="codeelearning.AddQuestionController">
   <children>
     <VBox prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
         <fx:include source="MenuView.fxml" />
-        <Pane id="imagePane" VBox.vgrow="ALWAYS">
+        <VBox alignment="CENTER" spacing="5.0">
           <children>
-            <ImageView id="QuestionFigure" fx:id="questionFigure" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="QuestionFigure" fx:id="questionFigure" pickOnBounds="true" preserveRatio="true">
               <fitHeight>
                 <Long fx:value="300" />
               </fitHeight>
               <fitWidth>
-                <Long fx:value="350" />
+                <Long fx:value="500" />
               </fitWidth>
             </ImageView>
-          </children>
-          <prefHeight>
-            <Long fx:value="-1" />
-          </prefHeight>
-          <prefWidth>
-            <Long fx:value="-1" />
-          </prefWidth>
-          <VBox.margin>
-            <Insets fx:id="x1" />
-          </VBox.margin>
-        </Pane>
-        <HBox alignment="BOTTOM_LEFT" VBox.margin="$x1" VBox.vgrow="ALWAYS">
-          <children>
-            <Button id="button" fx:id="setFigureButton" alignment="BOTTOM_RIGHT" onAction="#handleButtonAction" text="SetFigure" />
-            <Label id="label" fx:id="labelFile" HBox.hgrow="ALWAYS">
+            <Label id="label" fx:id="labelFile">
               <minHeight>
                 <Long fx:value="-1" />
               </minHeight>
@@ -51,20 +37,14 @@
               </prefWidth>
             </Label>
           </children>
-          <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" fx:id="x2" />
-          </padding>
           <prefHeight>
-            <Long fx:value="-1" />
+            <Long fx:value="300" />
           </prefHeight>
           <prefWidth>
-            <Long fx:value="-1" />
+            <Long fx:value="500" />
           </prefWidth>
-          <spacing>
-            <Long fx:value="0" />
-          </spacing>
-        </HBox>
-        <VBox fx:id="choicesVBox" padding="$x2" VBox.margin="$x1" VBox.vgrow="ALWAYS">
+        </VBox>
+        <VBox fx:id="choicesVBox" padding="$x2" VBox.vgrow="SOMETIMES">
           <children>
             <TextField fx:id="questionText" text="Your question here">
               <minHeight>
@@ -85,26 +65,27 @@
                 <Long fx:value="200" />
               </prefHeight>
             </ListView>
-            <HBox padding="$x2" prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
+                <Button id="button" fx:id="setFigureButton" alignment="BOTTOM_RIGHT" onAction="#handleButtonAction" text="SetFigure" />
                 <Button fx:id="addChoiceButton" mnemonicParsing="false" onAction="#handleAddChoiceAction" text="Add choice">
                   <prefWidth>
                     <Long fx:value="-1" />
                   </prefWidth>
                 </Button>
                 <Button id="removeChoiceButton" fx:id="removeChoiceItemButton" disable="true" mnemonicParsing="false" onAction="#handleRemoveChoiceAction" text="Remove choice" />
+                <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0" HBox.hgrow="ALWAYS">
+                  <children>
+                    <Button id="button" fx:id="saveQuestionButton" alignment="CENTER_RIGHT" contentDisplay="TOP" onAction="#handleSaveQuestionAction" text="Save Question" />
+                  </children>
+                </HBox>
               </children>
-            </HBox>
-            <HBox alignment="BOTTOM_RIGHT" padding="$x2">
-              <children>
-                <Button id="button" fx:id="saveQuestionButton" onAction="#handleSaveQuestionAction" text="Save Question" />
-              </children>
-              <prefHeight>
-                <Long fx:value="-1" />
-              </prefHeight>
-              <prefWidth>
-                <Long fx:value="-1" />
-              </prefWidth>
+              <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" fx:id="x2" />
+              </padding>
+              <spacing>
+                <Long fx:value="10" />
+              </spacing>
             </HBox>
           </children>
           <prefHeight>
@@ -116,6 +97,9 @@
           <spacing>
             <Long fx:value="10" />
           </spacing>
+          <VBox.margin>
+            <Insets fx:id="x1" />
+          </VBox.margin>
         </VBox>
       </children>
       <prefWidth>
@@ -123,4 +107,10 @@
       </prefWidth>
     </VBox>
   </children>
+  <prefHeight>
+    <Long fx:value="600" />
+  </prefHeight>
+  <prefWidth>
+    <Long fx:value="800" />
+  </prefWidth>
 </AnchorPane>

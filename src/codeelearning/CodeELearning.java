@@ -35,6 +35,7 @@ public class CodeELearning extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("views/StartupView.fxml"));
         currentStage = stage;
+        stage.setFullScreen(true);
 
         stage.setScene(new Scene(root));
         stage.show();
@@ -48,7 +49,7 @@ public class CodeELearning extends Application {
         } else {
             currentStage.getScene().setRoot(page);
         }
-        currentStage.sizeToScene();
+        //currentStage.sizeToScene();
         return page;
     }
 
