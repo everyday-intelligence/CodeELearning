@@ -21,7 +21,7 @@ public class Choice implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String choiceAnswer;
-    private Boolean correct;
+    private Boolean correct = false;
 
     public Long getId() {
         return id;
