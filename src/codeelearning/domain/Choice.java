@@ -5,7 +5,10 @@
 package codeelearning.domain;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,15 +19,25 @@ import javax.persistence.Id;
  */
 @Entity
 public class Choice implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String choiceAnswer;
-    private Boolean correct = false;
+    @Enumerated(EnumType.STRING)
+    protected ChoiceState choiceState = ChoiceState.FALSE;
 
     public Long getId() {
         return id;
+    }
+
+    public ChoiceState getChoiceState() {
+        return choiceState;
+    }
+
+    public void setChoiceState(ChoiceState choiceState) {
+        this.choiceState = choiceState;
     }
 
     public void setId(Long id) {
@@ -40,11 +53,7 @@ public class Choice implements Serializable {
     }
 
     public Boolean isCorrect() {
-        return correct;
-    }
-
-    public void setCorrect(Boolean correct) {
-        this.correct = correct;
+        return this.choiceState == ChoiceState.CORRECT;
     }
 
     @Override
@@ -71,5 +80,13 @@ public class Choice implements Serializable {
     public String toString() {
         return "codeelearning.domain.Choice[ id=" + id + " ]";
     }
-    
+
+    public void setCorrect(boolean selected) {
+        if (selected) {
+            this.choiceState = ChoiceState.CORRECT;
+        } else {
+            this.choiceState = ChoiceState.FALSE;
+        }
+
+    }
 }
