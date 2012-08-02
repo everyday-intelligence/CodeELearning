@@ -9,7 +9,6 @@ import codeelearning.domain.Question;
 import codeelearning.domain.QuestionFigure;
 import codeelearning.domainControllers.QuestionJpaController;
 import codeelearning.models.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,10 +24,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Callback;
 import javax.persistence.EntityManagerFactory;
@@ -54,6 +51,7 @@ public class ListQuestionsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         questionsItems.setCellFactory(new Callback<ListView<ListQuestionItemModel>, ListCell<ListQuestionItemModel>>() {
+            @Override
             public ListCell<ListQuestionItemModel> call(ListView<ListQuestionItemModel> p) {
                 return new ListQuestionItemCell();
             }
@@ -101,43 +99,38 @@ public class ListQuestionsController implements Initializable {
         choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>() {
             @Override
             public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p) {
-                return new ColorRectCell();
+                return new ListChoiceCorrectionItemCell();
             }
         });
     }
 
     @FXML
     public void verifyAnswerAction(ActionEvent arg0) {
-    }
-
-    static class ColorRectCell extends ListCell<ChoiceItemModel> {
-
-        @Override
-        public void updateItem(ChoiceItemModel model, boolean bln) {
-            super.updateItem(model, bln);
-            Rectangle rect = new Rectangle(100, 20);
-            if (model != null) {
-
-                URL location = ListChoiceItemController.class.getResource("views/ListChoiceItemView.fxml");
-
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(location);
-                fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
-
-                try {
-                    Node root = (Node) fxmlLoader.load(location.openStream());
-                    ListChoiceItemController controller = (ListChoiceItemController) fxmlLoader.getController();
-                    controller.setModel(model);
-                    if (model.getChoice().isCorrect()) {
-                        root.setStyle("-fx-background-color: #336699;");
-                    }
-                    setGraphic(root);
-                } catch (IOException ioe) {
-                    throw new IllegalStateException(ioe);
-                }
-
-
+        List<Choice> selectedAnswers = new ArrayList<Choice>();
+        Boolean isResponseCorrect = true;
+        for(ChoiceItemModel chitm:choicesItems.getItems()){
+            if(chitm.isSelected()){
+                selectedAnswers.add(chitm.getChoice());
             }
+            isResponseCorrect = selectedQuestion.isAnswerCorrect(selectedAnswers);
+        }
+        if(isResponseCorrect){
+            //TODO afficher bonne reponse et son
+            choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>() {
+            @Override
+            public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p) {
+                return new ListChoiceCorrectionItemCell();
+            }
+        });
+        }else{
+            choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>() {
+            @Override
+            public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p) {
+                return new ListChoiceIncorrectItemCell();
+            }
+        });
         }
     }
+
+    
 }
