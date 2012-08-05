@@ -4,11 +4,12 @@
  */
 package codeelearning;
 
+import codeelearning.domain.*;
+import codeelearning.domainControllers.QuestionJpaController;
 import codeelearning.models.AddChoiceItemCell;
 import codeelearning.models.ChoiceItemModel;
-import codeelearning.domain.*;
-import codeelearning.domainControllers.QuestionFigureJpaController;
-import codeelearning.domainControllers.QuestionJpaController;
+import codeelearning.utils.FileUtils;
+import codeelearning.utils.ImageIOUtils;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,17 +19,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -59,18 +57,7 @@ public class AddQuestionController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("choosing");
-
-        FileChooser fileChooser = new FileChooser();
-        //Open directory from existing directory
-        if (figureFile != null) {
-            File existDirectory = figureFile.getParentFile();
-            fileChooser.setInitialDirectory(existDirectory);
-        }
-        //Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("AVI files (*.jpg)", "*.jpg");
-        fileChooser.getExtensionFilters().add(extFilter);
-        //Show open file dialog
-        figureFile = fileChooser.showOpenDialog(CodeELearning.getInstance().getCurrentStage());
+        figureFile = FileUtils.getFileFromDisk(CodeELearning.getInstance().getCurrentStage());
         labelFile.setText(figureFile.getPath());
         questionFigure.setImage(new Image(figureFile.getAbsolutePath()));
         //imagePane.getChildren().add(questionFigure);        
@@ -87,7 +74,7 @@ public class AddQuestionController implements Initializable {
     private void handleSaveQuestionAction(ActionEvent event) {
         QuestionFigure qf = new QuestionFigure();
         try {
-            qf.setFigure(getArrayByteFromFile(figureFile));
+            qf.setFigure(ImageIOUtils.getArrayByteFromFile(figureFile));
         } catch (IOException ex) {
             Logger.getLogger(AddQuestionController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -151,46 +138,5 @@ public class AddQuestionController implements Initializable {
                 removeChoiceItemButton.setDisable(true);
     }
 
-    public static byte[] getArrayByte(InputStream input, int estimatedSize)
-            throws IOException {
-        final ByteArrayOutputStream output = new ByteArrayOutputStream(estimatedSize);
-        try {
-            final byte[] buf = new byte[8192];
-            int len;
-
-            while ((len = input.read(buf)) >= 0) {
-                output.write(buf, 0, len);
-            }
-        } finally {
-            output.close();
-        }
-        return output.toByteArray();
-    }
-
-    public static byte[] getArrayByte(InputStream input) throws IOException {
-        return getArrayByte(input, 16);
-    }
-
-    public static byte[] getArrayByteFromFile(File f) throws IOException {
-        final long length = f.length();
-        if (length > Integer.MAX_VALUE) { // + de 2 Go
-            throw new IOException("File too big");
-        }
-
-        FileInputStream input = new FileInputStream(f);
-        try {
-            return getArrayByte(input, (int) length);
-        } finally {
-            input.close();
-        }
-    }
-
-    public static byte[] getArrayByteFromURL(URL url) throws IOException {
-        InputStream input = url.openStream();
-        try {
-            return getArrayByte(input);
-        } finally {
-            input.close();
-        }
-    }
+    
 }

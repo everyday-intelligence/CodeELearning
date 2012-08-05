@@ -15,9 +15,8 @@
           <items>
             <Menu mnemonicParsing="false" text="New">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#handleAddFigureAction" text="Figure" />
-                <MenuItem mnemonicParsing="false" onAction="#handleAddQuestionAction" text="Question" />
                 <MenuItem mnemonicParsing="false" text="Custom test" />
+                <MenuItem mnemonicParsing="false" onAction="#handleAddQuestionAction" text="Question" />
               </items>
             </Menu>
             <MenuItem mnemonicParsing="false" onAction="#handleCloseAction" text="Close" />
