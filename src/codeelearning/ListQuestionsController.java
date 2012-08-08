@@ -48,7 +48,6 @@ public class ListQuestionsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         questionsItems.setCellFactory(new Callback<ListView<ListQuestionItemModel>, ListCell<ListQuestionItemModel>>() {
-
             public ListCell<ListQuestionItemModel> call(ListView<ListQuestionItemModel> p) {
                 return new ListQuestionItemCell();
             }
@@ -81,10 +80,10 @@ public class ListQuestionsController implements Initializable {
             });
             ArrayList<ChoiceItemModel> choicesModels = new ArrayList<ChoiceItemModel>();
             for (Choice c : selectedQuestion.getChoices()) {
-                choicesModels.add(new ChoiceItemModel(c.getChoiceAnswer()));
+                choicesModels.add(new ChoiceItemModel(c));
             }
             choicesItems.setItems(FXCollections.observableArrayList(choicesModels));
-            
+
             QuestionFigure qf = selectedQuestion.getQuestionFigure();
             questionFigure.setImage(qf.convertToFXImage());
         }
@@ -92,6 +91,17 @@ public class ListQuestionsController implements Initializable {
 
     @FXML
     public void showCorrectAnswerAction(ActionEvent arg0) {
+        choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>() {
+            public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p) {
+                return new ListChoiceItemCorrectionCell();
+            }
+        });
+        ArrayList<ChoiceItemModel> choicesModels = new ArrayList<ChoiceItemModel>();
+        for (Choice c : selectedQuestion.getChoices()) {
+            choicesModels.add(new ChoiceItemModel(c));
+        }
+        choicesItems.setItems(FXCollections.observableArrayList(choicesModels));
+
     }
 
     @FXML
