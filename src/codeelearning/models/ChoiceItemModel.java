@@ -22,7 +22,7 @@ public class ChoiceItemModel
 
     public ChoiceItemModel()
     {
-        this(null);
+        this(new Choice());
     }
 
     public ChoiceItemModel(Choice choice)
@@ -33,7 +33,9 @@ public class ChoiceItemModel
     public ChoiceItemModel(Choice choice, boolean isSelected)
     {
         this.choice = choice;
+        if(choice != null){
         this.choiceText = new SimpleStringProperty(choice.getChoiceAnswer());
+        }
         this.isSelected = new SimpleBooleanProperty(isSelected);
     }
 
