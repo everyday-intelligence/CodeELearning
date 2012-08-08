@@ -29,7 +29,8 @@ public abstract class Question implements Serializable {
     protected List<Theme> themes;
     protected int importance;
     protected int complexity;
-    protected Boolean activated = false; 
+    @Enumerated(EnumType.STRING)
+    protected QuestionState questionState; 
     
     
     public Long getId() {
@@ -111,12 +112,18 @@ public abstract class Question implements Serializable {
     }
 
     public Boolean isActivated() {
-        return activated;
+        return this.questionState == QuestionState.ACTIVATED;
     }
 
-    public void setActivated(Boolean activated) {
-        this.activated = activated;
+    public QuestionState getQuestionState() {
+        return questionState;
     }
+
+    public void setQuestionState(QuestionState state) {
+        this.questionState = state;
+    }
+
+
 
     public abstract Boolean isValid(); 
     public abstract List<Choice> getValidResponse();

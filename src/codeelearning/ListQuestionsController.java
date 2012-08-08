@@ -9,7 +9,7 @@ import codeelearning.domain.Question;
 import codeelearning.domain.QuestionFigure;
 import codeelearning.domainControllers.QuestionJpaController;
 import codeelearning.models.*;
-import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +17,16 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Callback;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -48,6 +51,7 @@ public class ListQuestionsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         questionsItems.setCellFactory(new Callback<ListView<ListQuestionItemModel>, ListCell<ListQuestionItemModel>>() {
+            @Override
             public ListCell<ListQuestionItemModel> call(ListView<ListQuestionItemModel> p) {
                 return new ListQuestionItemCell();
             }
@@ -74,6 +78,7 @@ public class ListQuestionsController implements Initializable {
         questionText.setText(selectedQuestion.getQuestionText());
         if (selectedQuestion != null) {
             choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>() {
+                @Override
                 public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p) {
                     return new ListChoiceItemCell();
                 }
@@ -92,19 +97,40 @@ public class ListQuestionsController implements Initializable {
     @FXML
     public void showCorrectAnswerAction(ActionEvent arg0) {
         choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>() {
+            @Override
             public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p) {
-                return new ListChoiceItemCorrectionCell();
+                return new ListChoiceCorrectionItemCell();
             }
         });
-        ArrayList<ChoiceItemModel> choicesModels = new ArrayList<ChoiceItemModel>();
-        for (Choice c : selectedQuestion.getChoices()) {
-            choicesModels.add(new ChoiceItemModel(c));
-        }
-        choicesItems.setItems(FXCollections.observableArrayList(choicesModels));
-
     }
 
     @FXML
     public void verifyAnswerAction(ActionEvent arg0) {
+        List<Choice> selectedAnswers = new ArrayList<Choice>();
+        Boolean isResponseCorrect = true;
+        for(ChoiceItemModel chitm:choicesItems.getItems()){
+            if(chitm.isSelected()){
+                selectedAnswers.add(chitm.getChoice());
+            }
+            isResponseCorrect = selectedQuestion.isAnswerCorrect(selectedAnswers);
+        }
+        if(isResponseCorrect){
+            //TODO afficher bonne reponse et son
+            choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>() {
+            @Override
+            public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p) {
+                return new ListChoiceCorrectionItemCell();
+            }
+        });
+        }else{
+            choicesItems.setCellFactory(new Callback<ListView<ChoiceItemModel>, ListCell<ChoiceItemModel>>() {
+            @Override
+            public ListCell<ChoiceItemModel> call(ListView<ChoiceItemModel> p) {
+                return new ListChoiceIncorrectItemCell();
+            }
+        });
+        }
     }
+
+    
 }
