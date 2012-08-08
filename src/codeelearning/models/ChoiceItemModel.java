@@ -25,14 +25,16 @@ public class ChoiceItemModel
         this(null);
     }
 
-    
-
-    public ChoiceItemModel(Choice c)
+    public ChoiceItemModel(Choice choice)
     {
-        if(c!=null){
-            this.choiceText = new SimpleStringProperty(c.getChoiceAnswer());            
-        }
-        this.isSelected = new SimpleBooleanProperty(false);
+        this(choice, false);
+    }
+
+    public ChoiceItemModel(Choice choice, boolean isSelected)
+    {
+        this.choice = choice;
+        this.choiceText = new SimpleStringProperty(choice.getChoiceAnswer());
+        this.isSelected = new SimpleBooleanProperty(isSelected);
     }
 
     public String getChoiceText(){ return choiceText.get(); }
